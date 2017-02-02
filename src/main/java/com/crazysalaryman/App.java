@@ -13,7 +13,6 @@ import org.springframework.context.annotation.ComponentScan;
 @EnableAutoConfiguration
 @Slf4j
 public class App {
-
     public static void main(String[] args) {
         SpringApplication.run(App.class, args);
     }

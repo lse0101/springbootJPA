@@ -24,6 +24,9 @@ public class CustomerService {
     public Page<Customer> findAll(Pageable pageable) {
         return customerRepository.findAll(pageable);
     }
+    public List<Customer> findAll() {
+        return customerRepository.findAll();
+    }
 
     public Customer findOne(Integer id){
         return customerRepository.findOne(id);
