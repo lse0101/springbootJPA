@@ -8,6 +8,9 @@ import org.springframework.boot.autoconfigure.jdbc.DataSourceProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
+import org.springframework.core.Ordered;
+import org.springframework.core.annotation.Order;
+import org.springframework.web.filter.CharacterEncodingFilter;
 
 import javax.sql.DataSource;
 
@@ -23,26 +26,6 @@ public class AppConfig {
   DataSourceProperties dataSourceProperties;
   DataSource dataSource;
 
-//  @Bean
-//  @ConfigurationProperties(prefix = "spring.datasource")
-//  DataSourceProperties dataSourceProperties(){
-//    DataSourceProperties dataSourceProperties = new DataSourceProperties();
-//    return dataSourceProperties;
-//  }
-
-//  @Bean
-//  DataSource realDataSource(){
-//    DataSourceBuilder factory = DataSourceBuilder
-//        .create(dataSourceProperties.getClassLoader())
-//        .url(dataSourceProperties.getUrl())
-//        .username(dataSourceProperties.getUsername())
-//        .password(dataSourceProperties.getPassword());
-//
-//    this.dataSource = factory.build();
-//
-//    return this.dataSource;
-//  }
-
   @Bean
   @Primary
   DataSource dataSource(){
@@ -55,23 +38,13 @@ public class AppConfig {
     return new Log4jdbcProxyDataSource(factory.build());
   }
 
-/*  @Bean
-  NamedParameterJdbcTemplate jdbcTemplate(){
-    return new NamedParameterJdbcTemplate(this.dataSource());
-  }*/
-
-/*  @Bean
-  DataSourceInitializer dataSourceInitializer(DataSource dataSource) {
-    DataSourceInitializer dataSourceInitializer = new DataSourceInitializer();
-
-    dataSourceInitializer.setDataSource(dataSource);
-    ResourceDatabasePopulator resourceDatabasePopulator = new ResourceDatabasePopulator();
-    resourceDatabasePopulator.addScript(new ClassPathResource("schema.sql"));
-    resourceDatabasePopulator.addScript(new ClassPathResource("data.sql"));
-    dataSourceInitializer.setDatabasePopulator(resourceDatabasePopulator);
-    dataSourceInitializer.setEnabled(true);
-
-    return dataSourceInitializer;
-  }*/
+  @Order(Ordered.HIGHEST_PRECEDENCE)
+  @Bean
+  CharacterEncodingFilter characterEncodingFilter() {
+    CharacterEncodingFilter filter = new CharacterEncodingFilter();
+    filter.setEncoding("UTF-8");
+    filter.setForceEncoding(true);
+    return filter;
+  }
 
 }
