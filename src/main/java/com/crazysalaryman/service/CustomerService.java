@@ -1,6 +1,7 @@
 package com.crazysalaryman.service;
 
 import com.crazysalaryman.domain.Customer;
+import com.crazysalaryman.domain.User;
 import com.crazysalaryman.repository.CustomerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -25,18 +26,20 @@ public class CustomerService {
         return customerRepository.findAll(pageable);
     }
     public List<Customer> findAll() {
-        return customerRepository.findAll();
+        return customerRepository.findAllWithUserOrderByName();
     }
 
     public Customer findOne(Integer id){
         return customerRepository.findOne(id);
     }
 
-    public Customer create(Customer customer) {
+    public Customer create(Customer customer, User user) {
+        customer.setUser(user);
         return customerRepository.save(customer);
     }
 
-    public Customer update(Customer customer) {
+    public Customer update(Customer customer, User user) {
+        customer.setUser(user);
         return customerRepository.save(customer);
     }
 

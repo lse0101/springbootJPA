@@ -13,6 +13,8 @@ import org.springframework.core.annotation.Order;
 import org.springframework.web.filter.CharacterEncodingFilter;
 
 import javax.sql.DataSource;
+import java.net.URI;
+import java.net.URISyntaxException;
 
 
 /**
@@ -28,12 +30,30 @@ public class AppConfig {
 
   @Bean
   @Primary
-  DataSource dataSource(){
+  DataSource dataSource() throws URISyntaxException {
+
+    String url;
+    String username;
+    String password;
+
+    String databaseUrl = System.getenv("DATABASE_URL");
+
+    if (databaseUrl != null) {
+      URI dbUri = new URI(databaseUrl);
+      url = "jdbc:postgresql://" + dbUri.getHost() + ":" + dbUri.getPort() + dbUri.getPath();
+      username = dbUri.getUserInfo().split(":")[0];
+      password = dbUri.getUserInfo().split(":")[1];
+    } else {
+      url = this.dataSourceProperties.getUrl();
+      username = this.dataSourceProperties.getUsername();
+      password = this.dataSourceProperties.getPassword();
+    }
+
     DataSourceBuilder factory = DataSourceBuilder
             .create(dataSourceProperties.getClassLoader())
-            .url(dataSourceProperties.getUrl())
-            .username(dataSourceProperties.getUsername())
-            .password(dataSourceProperties.getPassword());
+            .url(url)
+            .username(username)
+            .password(password);
 
     return new Log4jdbcProxyDataSource(factory.build());
   }

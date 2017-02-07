@@ -2,6 +2,7 @@ package com.crazysalaryman.api;
 
 import com.crazysalaryman.domain.Customer;
 import com.crazysalaryman.service.CustomerService;
+import com.crazysalaryman.service.LoginUserDetails;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -9,6 +10,7 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 
@@ -32,8 +34,9 @@ public class CustomerRestController {
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    ResponseEntity<Customer> postCustomers(@RequestBody Customer customer, UriComponentsBuilder uriBuilder) {
-        Customer created = customerService.create(customer);
+    ResponseEntity<Customer> postCustomers(@RequestBody Customer customer,
+                                           UriComponentsBuilder uriBuilder, @AuthenticationPrincipal LoginUserDetails userDetails) {
+        Customer created = customerService.create(customer, userDetails.getUser());
         URI location =  uriBuilder.path("api/customers/{id}").buildAndExpand(created.getId()).toUri();
 
         HttpHeaders headers = new HttpHeaders();
@@ -50,9 +53,11 @@ public class CustomerRestController {
 
 
     @RequestMapping(value = "{id}", method = RequestMethod.PUT)
-    Customer putCustomer(@PathVariable Integer id, @RequestBody Customer customer) {
+    Customer putCustomer(@PathVariable Integer id,
+                         @RequestBody Customer customer,
+                         @AuthenticationPrincipal LoginUserDetails userDetails) {
         customer.setId(id);
-        return customerService.update(customer);
+        return customerService.update(customer, userDetails.getUser());
     }
 
     @RequestMapping(value = "{id}", method = RequestMethod.DELETE)
