@@ -1,1 +1,1 @@
-web: java -jar build/libs/springbootJPA-1.0-SNAPSHOT.jar --debug --server.port=8080 --spring.profiles.active=heroku
+web: java -jar build/libs/springbootJPA-1.0-SNAPSHOT.jar --server.port=8080 --spring.profiles.active=heroku

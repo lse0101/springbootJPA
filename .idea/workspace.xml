@@ -235,7 +235,7 @@
         <entry file="file://$PROJECT_DIR$/Procfile">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="0">
-              <caret line="0" column="80" lean-forward="false" selection-start-line="0" selection-start-column="80" selection-end-line="0" selection-end-column="80" />
+              <caret line="0" column="44" lean-forward="false" selection-start-line="0" selection-start-column="44" selection-end-line="0" selection-end-column="44" />
               <folding />
             </state>
           </provider>
@@ -1344,7 +1344,7 @@
       <updated>1485906128445</updated>
       <workItem from="1485906133924" duration="47121000" />
       <workItem from="1486339915459" duration="661000" />
-      <workItem from="1486341005971" duration="37306000" />
+      <workItem from="1486341005971" duration="37486000" />
     </task>
     <task id="LOCAL-00001" summary="gradle wrapper">
       <created>1485993783059</created>
@@ -1371,7 +1371,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="85088000" />
+    <option name="totallyTimeSpent" value="85268000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="395" y="42" width="1471" height="1017" extended-state="0" />
@@ -1836,7 +1836,7 @@
     <entry file="file://$PROJECT_DIR$/Procfile">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
-          <caret line="0" column="80" lean-forward="false" selection-start-line="0" selection-start-column="80" selection-end-line="0" selection-end-column="80" />
+          <caret line="0" column="44" lean-forward="false" selection-start-line="0" selection-start-column="44" selection-end-line="0" selection-end-column="44" />
           <folding />
         </state>
       </provider>
