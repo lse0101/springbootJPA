@@ -37,6 +37,7 @@ public class AppConfig {
     String password;
 
     String databaseUrl = System.getenv("DATABASE_URL");
+    log.info("######################################################################################");
     log.info("database_url " + databaseUrl);
 
     if (databaseUrl != null) {
@@ -60,6 +61,7 @@ public class AppConfig {
             .username(username)
             .password(password);
 
+    log.info("######################################################################################");
     return new Log4jdbcProxyDataSource(factory.build());
   }
 
