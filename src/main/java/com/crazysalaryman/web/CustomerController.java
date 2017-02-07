@@ -3,6 +3,7 @@ package com.crazysalaryman.web;
 import com.crazysalaryman.domain.Customer;
 import com.crazysalaryman.service.CustomerService;
 import com.crazysalaryman.service.LoginUserDetails;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -22,6 +23,7 @@ import java.util.List;
  */
 @Controller
 @RequestMapping("customers")
+@Slf4j
 public class CustomerController {
 
     @Autowired
@@ -34,7 +36,12 @@ public class CustomerController {
 
     @RequestMapping(method = RequestMethod.GET)
     String list(Model model){
-        List<Customer> customers = customerService.findAll();
+        List<Customer> customers = null;
+        try {
+            customers = customerService.findAll();
+        } catch (Exception e) {
+            log.error("error", e);
+        }
         model.addAttribute("customers", customers);
         return "customers/list";
     }
