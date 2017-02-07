@@ -43,7 +43,7 @@ dependencies {
     compile group: 'commons-dbcp', name: 'commons-dbcp', version: '1.4'
     compile "javax.el:javax.el-api:2.2.2"
     compile "org.glassfish.web:javax.el:2.2.4"
-    compile "org.flywaydb:flyway-core"
+    compile "org.flywaydb:flyway-core:4.0.3"
 
     runtime("com.h2database:h2")
     runtime "postgresql:postgresql:9.0-801.jdbc4"
