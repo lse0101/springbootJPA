@@ -37,6 +37,7 @@ public class AppConfig {
     String password;
 
     String databaseUrl = System.getenv("DATABASE_URL");
+    log.info("database_url " + databaseUrl);
 
     if (databaseUrl != null) {
       URI dbUri = new URI(databaseUrl);
@@ -48,6 +49,10 @@ public class AppConfig {
       username = this.dataSourceProperties.getUsername();
       password = this.dataSourceProperties.getPassword();
     }
+
+    log.info(url);
+    log.info(username);
+    log.info(password);
 
     DataSourceBuilder factory = DataSourceBuilder
             .create(dataSourceProperties.getClassLoader())
