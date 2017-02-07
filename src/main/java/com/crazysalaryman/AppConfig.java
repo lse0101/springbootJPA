@@ -42,7 +42,8 @@ public class AppConfig {
 
     if (databaseUrl != null) {
       URI dbUri = new URI(databaseUrl);
-      url = "jdbc:postgresql://" + dbUri.getHost() + ":" + dbUri.getPort() + dbUri.getPath();
+      url = "jdbc:postgresql://" + dbUri.getHost() + ":" + dbUri.getPort() + dbUri.getPath()
+              +"&ssl=true&sslfactory=org.postgresql.ssl.NonValidatingFactory";
       username = dbUri.getUserInfo().split(":")[0];
       password = dbUri.getUserInfo().split(":")[1];
     } else {
