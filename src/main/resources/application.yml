@@ -27,3 +27,4 @@ spring:
     database: postgresql
     hibernate:
       ddl-auto: validate
+
