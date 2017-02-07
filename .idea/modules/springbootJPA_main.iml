@@ -35,7 +35,7 @@
     <orderEntry type="library" name="Gradle: com.fasterxml.jackson.core:jackson-databind:2.8.5" level="project" />
     <orderEntry type="library" scope="RUNTIME" name="Gradle: com.h2database:h2:1.4.193" level="project" />
     <orderEntry type="library" name="Gradle: org.springframework:spring-web:4.3.5.RELEASE" level="project" />
-    <orderEntry type="library" scope="RUNTIME" name="Gradle: org.postgresql:postgresql:9.4.1208" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: org.postgresql:postgresql:9.4-1203-jdbc41" level="project" />
     <orderEntry type="library" scope="RUNTIME" name="Gradle: org.webjars:bootstrap:3.3.4" level="project" />
     <orderEntry type="library" name="Gradle: org.springframework:spring-webmvc:4.3.5.RELEASE" level="project" />
     <orderEntry type="library" name="Gradle: org.springframework.boot:spring-boot-starter-aop:1.4.3.RELEASE" level="project" />
