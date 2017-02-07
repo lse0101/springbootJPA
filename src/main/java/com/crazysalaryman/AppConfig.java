@@ -10,6 +10,8 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
 import org.springframework.core.Ordered;
 import org.springframework.core.annotation.Order;
+import org.springframework.jdbc.datasource.SimpleDriverDataSource;
+import org.springframework.jdbc.datasource.SingleConnectionDataSource;
 import org.springframework.web.filter.CharacterEncodingFilter;
 
 import javax.sql.DataSource;
@@ -55,14 +57,17 @@ public class AppConfig {
     log.info(url);
     log.info(username);
     log.info(password);
+    log.info(this.dataSourceProperties.getDriverClassName());
 
     DataSourceBuilder factory = DataSourceBuilder
             .create(dataSourceProperties.getClassLoader())
+            .driverClassName(this.dataSourceProperties.getDriverClassName())
             .url(url)
             .username(username)
             .password(password);
 
     log.info("######################################################################################");
+//    return factory.build();
     return new Log4jdbcProxyDataSource(factory.build());
   }
 
