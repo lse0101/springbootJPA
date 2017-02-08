@@ -32,4 +32,6 @@ spring:
     database: postgresql
     hibernate:
       ddl-auto: validate
+flyway:
+  validate-on-migrate: false
 
