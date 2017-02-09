@@ -1,6 +1,7 @@
 package com.crazysalaryman.domain;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -18,14 +19,13 @@ import java.util.List;
 @Entity
 @Table(name = "users")
 @ToString(exclude = "customers")
+@JsonIgnoreProperties({"encodedPassword", "customers"})
 public class User {
     @Id
     private String username;
 
-    @JsonIgnore
     private String encodedPassword;
 
-    @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, fetch =FetchType.LAZY, mappedBy = "user")
     private List<Customer> customers;
 }

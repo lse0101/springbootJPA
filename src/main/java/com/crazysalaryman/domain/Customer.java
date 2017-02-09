@@ -1,5 +1,6 @@
 package com.crazysalaryman.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -16,16 +17,19 @@ import javax.persistence.*;
 @NoArgsConstructor
 public class Customer {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+//    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue
     private Integer id;
 
-    @Column(nullable = false)
+    @Column(name = "first_name", nullable = false)
     private String firstName;
 
-    @Column(nullable = false)
+    @Column(name = "last_name",nullable = false)
     private String lastName;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(nullable = true, name = "username")
+//    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "username")
+    @JsonIgnore
     private User user;
 }

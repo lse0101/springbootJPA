@@ -3,6 +3,7 @@ package com.crazysalaryman.api;
 import com.crazysalaryman.domain.Customer;
 import com.crazysalaryman.service.CustomerService;
 import com.crazysalaryman.service.LoginUserDetails;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -22,6 +23,7 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("/api/customers")
+@Slf4j
 public class CustomerRestController {
 
     @Autowired
@@ -30,6 +32,8 @@ public class CustomerRestController {
     @RequestMapping(method = RequestMethod.GET)
     Page<Customer> getCustomers(@PageableDefault Pageable pageable) {
         Page<Customer> customers = customerService.findAll(pageable);
+        log.info("######################################");
+        log.info(customers.toString());
         return customers;
     }
 
